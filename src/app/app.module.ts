@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EmployeeService } from './employees/employeeService';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
-import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { CreateEmployeeComponent } from './employees/create-employee/create-employee.component';
 import {AppRoutingModule} from './app-routing.module';
 import { TeamListComponent } from './teams/team-list/team-list.component';
@@ -19,11 +18,10 @@ import { CreateTeamComponent } from './teams/create-team/create-team.component';
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    EmployeeDetailComponent,
     CreateEmployeeComponent,
     TeamListComponent,
     ManagerListComponent,
-    CreateTeamComponent,
+    CreateTeamComponent
   ],
   imports: [
     BrowserModule,

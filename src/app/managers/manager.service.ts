@@ -5,10 +5,10 @@ import {map} from 'rxjs/operators';
 
 @Injectable()
 export class ManagerService {
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080/manager';
   constructor(private http: HttpClient) { }
   getManagers(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/manager`).pipe(
+    return this.http.get(`${this.baseUrl}`).pipe(
       map(
         (response) => {
           console.log(response);

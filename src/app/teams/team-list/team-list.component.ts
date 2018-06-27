@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
 import {TeamService} from '../team.service';
 import {Teams} from '../../Entities/Teams';
 import {EmployeeListComponent} from '../../employees/employee-list/employee-list.component';
@@ -17,6 +17,10 @@ export class TeamListComponent implements OnInit {
   ngOnInit() {
     this.loadTeams();
   }
+  /*ngDoCheck() {
+    //this.loadTeams();
+  }*/
+
   loadTeams() {
     this.teamService.getTeams().subscribe(
       (team: any[]) => this.teams = team,

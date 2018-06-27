@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Teams} from '../../Entities/Teams';
 import {TeamService} from '../team.service';
+import {Router} from '@angular/router';
+import {TeamListComponent} from '../team-list/team-list.component';
 
 @Component({
   selector: 'app-create-team',
@@ -10,7 +12,9 @@ import {TeamService} from '../team.service';
 export class CreateTeamComponent implements OnInit {
   team: Teams = new Teams();
   submitted: false;
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService,
+              private router: Router,
+              private teamListComponent: TeamListComponent) { }
 
   ngOnInit() {
   }
@@ -21,7 +25,12 @@ export class CreateTeamComponent implements OnInit {
   }
   save() {
     this.teamService.createTeam(this.team)
-      .subscribe(data => console.log(data),
+      .subscribe(data => {
+          this.teamListComponent.loadTeams();
+          this.router.navigate(['teams']);
+          console.log(data);
+
+        },
         (error) => console.log(error));
     this.team = new Teams();
   }

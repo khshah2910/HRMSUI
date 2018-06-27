@@ -6,73 +6,28 @@ import {Employee} from '../Entities/Employee';
 
 @Injectable()
 export class EmployeeService {
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080/employee';
   constructor(private http: HttpClient) { }
   getEmployees(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/employees`).pipe(map(
+    return this.http.get(`${this.baseUrl}`).
+    pipe(map
+    (
       (response) => {
         return response;
       }
     ));
   }
-  /*
-  createCustomer(customer: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `/create`, customer);
-  }
-   */
   createEmployee(employee: Employee): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/employee/register`, employee);
+    return this.http.post(`${this.baseUrl}/create`, employee);
+  }
+  findEmployeeByName(name: string, value: any): Observable<Object> {
+    return this.http.get(`${this.baseUrl}/findByName/${name}`, value);
+  }
+  deleteEmployee(id:  number): Observable<Object> {
+    return this.http.delete(`${this.baseUrl}/remove/${id}`);
   }
 
-  /*getTeams(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/teams`).pipe(
-      map(
-        (response) => {
-          console.log(response);
-          return response;
-        }
-      )
-    );
+  updateEmployee(id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}/update/${id}`, value);
   }
-
-  getManagers(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/manager`).pipe(
-      map(
-        (response) => {
-          console.log(response);
-          return response;
-        }
-      )
-    );
-  }*/
-
-  /*
-
-  private baseUrl = 'http://localhost:9000/api/customers';
-  constructor(private http: HttpClient) {}
-  getCustomer(id: string): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/${id}`);
-  }
-
-  createCustomer(customer: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `/create`, customer);
-  }
-
-  updateCustomer(id: string, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/find/${id}`, value);
-  }
-
-  deleteCustomer(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete/${id}`, { responseType: 'text' });
-  }
-
-  getCustomersList(query = {}): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
-  }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(`${this.baseUrl}` + `/delete`, { responseType: 'text' });
-  }
-}
-   */
 }

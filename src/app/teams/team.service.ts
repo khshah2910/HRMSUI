@@ -7,13 +7,13 @@ import {Teams} from '../Entities/Teams';
 
 @Injectable()
 export class TeamService {
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080/teams';
 
   constructor(private http: HttpClient) {
   }
 
   getTeams(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/teams`).pipe(
+    return this.http.get(`${this.baseUrl}`).pipe(
       map(
         (response) => {
           console.log(response);
@@ -23,6 +23,6 @@ export class TeamService {
     );
   }
   createTeam(team: Teams): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/register/team`, team);
+    return this.http.post(`${this.baseUrl}/create`, team);
   }
 }

@@ -1,4 +1,12 @@
 <div class="container">
+
+  <form (ngSubmit) = "searchEmployee()">
+    <label> Search Employee by First Name </label>
+    <input type="text" id="firstName" class="form-control"
+           name="firstName"
+           [(ngModel)]="firstName">
+      <button class="btn btn-primary" type="submit"> Search!</button>
+  </form>
   <div class="table">
     <thead>
     <tr>
@@ -9,6 +17,8 @@
       <th scope="col"> User Name</th>
       <th scope="col"> Role </th>
       <th scope="col"> Team </th>
+      <th scope="col"> Status </th>
+      <th scope="col">  </th>
     </tr>
     </thead>
     <tbody>
@@ -19,7 +29,13 @@
       <td>{{employee.email}}</td>
       <td>{{employee.userName}}</td>
       <td>{{employee.role}}</td>
-      <!--<td>{{employee.team.teamName}}</td>-->
+      <td *ngIf="employee.team != null; else default">{{employee.team.teamName}}
+      </td>
+      <ng-template #default><td>Not Assigned!</td></ng-template>
+      <td *ngIf="employee.status != null ; else inActive">{{employee.status}}</td>
+      <ng-template #inActive><td>InActive</td></ng-template>
+      <!--<button class="btn btn-primary" (click)="setInactive()"> Change Status!</button>-->
+      <button class="btn btn-primary" (click)="deleteEmployee(employee.id)">Delete</button>
     </tr>
     </tbody>
   </div>
