@@ -3,7 +3,6 @@ import {EmployeeService} from '../employeeService';
 import {Employee} from '../../Entities/Employee';
 import {Teams} from '../../Entities/Teams';
 import {TeamService} from '../../teams/team.service';
-import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 import {EmployeeListComponent} from '../employee-list/employee-list.component';
 
@@ -25,7 +24,7 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
     console.log(this.getTeams());
   }
-  addCustomer(): void {
+  addEmployee(): void {
     this.submitted = false;
     this.employee = new Employee();
   }
@@ -42,6 +41,7 @@ export class CreateEmployeeComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.save();
+    alert('Employee Created successfully');
   }
 
   getTeams() {

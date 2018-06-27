@@ -1,12 +1,16 @@
 <div class="container">
 
+
   <form (ngSubmit) = "searchEmployee()">
-    <label> Search Employee by First Name </label>
+    <label class="col-lg-3"> Search Employee by First Name: </label>
+    <div class="col-lg-6">
     <input type="text" id="firstName" class="form-control"
            name="firstName"
            [(ngModel)]="firstName">
+    </div>
       <button class="btn btn-primary" type="submit"> Search!</button>
   </form>
+  <hr>
   <div class="table">
     <thead>
     <tr>

@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'employees', component: EmployeeListComponent , children: [
       {path: 'add', component: CreateEmployeeComponent}
     ]},
+  {path: 'addEmployee', component: CreateEmployeeComponent},
   { path: 'teams' , component: TeamListComponent, children : [
       {path: 'createTeam', component: CreateTeamComponent}
     ]},
