@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="col-lg-3">
+    <div [hidden]="submitted">
+    <form (ngSubmit) = "onSubmit()">
+      <label >First Name</label><input type="text" id="firstName" class="form-control"
+                                       name="firstName" required
+                                       [(ngModel)]="employee.firstName">
+      <label >Last Name</label><input type="text" id="lastName" class="form-control"
+                                      name="lastName" required
+                                      [(ngModel)]="employee.lastName">
+      <label >Email</label><input type="text" id="email" class="form-control"
+                                  name="email" required
+                                  [(ngModel)]="employee.email">
+      <label >Password</label><input type="password" id="password" class="form-control"
+                                     name="password" required
+                                     [(ngModel)]="employee.password">
+      <label >Username</label><input type="text" id="userName" class="form-control"
+                                     name="userName" required
+                                     [(ngModel)]="employee.userName">
+      <label >Role</label><input type="text" id="role" class="form-control"
+                                   name="role"
+                                   [(ngModel)]="employee.role">
+      <hr>
+      <button type="submit" class="btn btn-success">Save</button>
+    </form>
+    </div>
+      <div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+        <button class="btn btn-success" (click)="addCustomer()">Add</button>
+      </div>
+  </div>
+</div>
