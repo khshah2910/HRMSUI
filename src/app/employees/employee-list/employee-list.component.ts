@@ -1,6 +1,7 @@
 import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
-import {EmployeeService} from '../employeeService';
+import {EmployeeService} from '../../Services/employeeService';
 import {Employee} from '../../Entities/Employee';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class EmployeeListComponent implements OnInit, OnChanges {
   employee: Employee;
   employees: Employee[];
   firstName: string;
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit() {
     this.loadData();
@@ -48,5 +49,8 @@ export class EmployeeListComponent implements OnInit, OnChanges {
         },
       (error) => console.log(error)
     );
+  }
+  sortByRole() {
+    console.log('method works');
   }
 }

@@ -1,16 +1,13 @@
 <div class="container">
-
-
+  <div class="col-lg-9 jumbotron">
   <form (ngSubmit) = "searchEmployee()">
-    <label class="col-lg-3"> Search Employee by First Name: </label>
-    <div class="col-lg-6">
-    <input type="text" id="firstName" class="form-control"
+    <label> Search Employee by First Name: </label> <input type="text" id="firstName"
            name="firstName"
-           [(ngModel)]="firstName">
-    </div>
+           [(ngModel)]="firstName"
+    style="width: 40%;">
       <button class="btn btn-primary" type="submit"> Search!</button>
   </form>
-  <hr>
+  </div>
   <div class="table">
     <thead>
     <tr>
@@ -22,7 +19,8 @@
       <th scope="col"> Role </th>
       <th scope="col"> Team </th>
       <th scope="col"> Status </th>
-      <th scope="col">  </th>
+      <th scope="col">   </th>
+      <th scope="col">   </th>
     </tr>
     </thead>
     <tbody>
@@ -39,11 +37,13 @@
       <td *ngIf="employee.status != null ; else inActive">{{employee.status}}</td>
       <ng-template #inActive><td>InActive</td></ng-template>
       <!--<button class="btn btn-primary" (click)="setInactive()"> Change Status!</button>-->
-      <button class="btn btn-primary" (click)="deleteEmployee(employee.id)">Delete</button>
+      <!--<td><button class="btn btn-success" (click)="deleteEmployee(employee.id)">Update</button></td>-->
+      <td><a [routerLink]="['info',employee.id]" class="btn btn-success" role="button" routerLinkActive="active">Update</a></td>
+      <td><button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Delete</button></td>
     </tr>
     </tbody>
   </div>
   <hr>
-  <a routerLink="add" class="btn btn-primary active" role="button" routerLinkActive="active">Add Employee</a>
+  <a routerLink="add" class="btn btn-primary active" role="button" routerLinkActive="active">Add Employee</a> <hr>
   <router-outlet></router-outlet>
 </div>

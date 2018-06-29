@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeeService} from '../employeeService';
+import {EmployeeService} from '../../Services/employeeService';
 import {Employee} from '../../Entities/Employee';
 import {Teams} from '../../Entities/Teams';
-import {TeamService} from '../../teams/team.service';
+import {TeamService} from '../../Services/team.service';
 import {Router} from '@angular/router';
 import {EmployeeListComponent} from '../employee-list/employee-list.component';
+import {FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 
 
 @Component({
@@ -41,7 +42,7 @@ export class CreateEmployeeComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.save();
-    alert('Employee Created successfully');
+    /*alert('Employee Created successfully');*/
   }
 
   getTeams() {

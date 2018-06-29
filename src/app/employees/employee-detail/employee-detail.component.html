@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="col-lg-5 jumbotron">
+
+    <h2>Add Employee</h2>
+    <div [hidden]="submitted">
+      <form (ngSubmit) = "onSubmit()" #frm="ngForm" class="form-group">
+        <label >First Name</label><input type="text" id="firstName" class="form-control"
+                                         name="firstName"
+                                         [value]="employee.firstName"
+                                         required
+                                         [(ngModel)]="employee.firstName"
+                                         #firstname="ngModel">
+        <div *ngIf="firstname?.touched">
+          <div *ngIf="firstname.errors?.required" class="alert alert-danger">
+            First Name Required
+          </div>
+        </div>
+        <label >Last Name</label><input type="text" id="lastName" class="form-control"
+                                        name="lastName"
+                                        required
+                                        [(ngModel)]="employee.lastName"
+                                        #lastname="ngModel">
+        <div *ngIf="lastname?.touched">
+          <div *ngIf="lastname.errors?.required" class="alert alert-danger">
+            Last Name Required
+          </div>
+        </div>
+        <label >Email</label><input type="email" id="email" class="form-control" pattern="[^ @]*@[^ @]*"
+                                    name="email"
+                                    required
+                                    pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    [(ngModel)]="employee.email"
+                                    #enterdEmail="ngModel">
+        <div *ngIf="enterdEmail?.touched">
+          <div *ngIf="enterdEmail.errors?.required" class="alert alert-danger">
+            Email Required
+          </div>
+          <div *ngIf="enterdEmail.errors?.pattern" class="alert alert-danger">
+            Enter Valid Email
+          </div>
+        </div>
+
+        <label >Password</label><input type="password" id="password" class="form-control"
+                                       name="password"
+                                       required
+                                       [(ngModel)]="employee.password"
+                                       #pass="ngModel">
+        <div *ngIf="pass?.touched">
+          <div *ngIf="pass.errors?.required" class="alert alert-danger">
+            Password Required
+          </div>
+        </div>
+        <label >Username</label><input type="text" id="userName" class="form-control"
+                                       name="userName"
+                                       required
+                                       [(ngModel)]="employee.userName"
+                                       #uname="ngModel">
+        <div *ngIf="uname?.touched">
+          <div *ngIf="uname.errors?.required" class="alert alert-danger">
+            Username Required
+          </div>
+        </div>
+        <label >Role</label><input type="text" id="role" class="form-control"
+                                   name="role"
+                                   [(ngModel)]="employee.role" disabled>
+
+        <!--<label >Team</label> <br><select id="team" class="form-control"
+                                         name="team"
+                                         required
+                                         [(ngModel)]="employee.team"
+                                         #assignedTeam="ngModel"
+      >
+        <option *ngFor="let team of teams"
+                id="id"
+                [ngValue]=team>
+          {{team.teamName}}
+        </option>
+      </select>-->
+        <div *ngIf="assignedTeam?.touched">
+          <div *ngIf="assignedTeam.errors?.required" class="alert alert-danger">
+            Please select Team
+          </div>
+        </div>
+        <hr>
+        <!--{{frm.value | json}}-->
+        <button type="submit" class="btn btn-success" [disabled]="frm.invalid" >Save Changes!</button>
+      </form>
+      <button class="btn" (click)="findEmployee()"></button>
+    </div>
+    <!--<div [hidden]="!submitted">
+      <h4>You submitted successfully!</h4>
+      <button class="btn btn-success" (click)="addEmployee()">Add</button>
+    </div>-->
+  </div>
+</div>

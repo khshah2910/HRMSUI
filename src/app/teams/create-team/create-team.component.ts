@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Teams} from '../../Entities/Teams';
-import {TeamService} from '../team.service';
+import {TeamService} from '../../Services/team.service';
 import {Router} from '@angular/router';
 import {TeamListComponent} from '../team-list/team-list.component';
 

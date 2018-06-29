@@ -23,6 +23,10 @@ export class EmployeeService {
   findEmployeeByName(name: string, value: any): Observable<Object> {
     return this.http.get(`${this.baseUrl}/findByName/${name}`, value);
   }
+  findEmployeeById(id: number, value: any): Observable<Object> {
+    return this.http.get(`${this.baseUrl}/${id}`, value);
+  }
+
   deleteEmployee(id:  number): Observable<Object> {
     return this.http.delete(`${this.baseUrl}/remove/${id}`);
   }

@@ -1,8 +1,8 @@
 import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
-import {TeamService} from '../team.service';
+import {TeamService} from '../../Services/team.service';
 import {Teams} from '../../Entities/Teams';
 import {EmployeeListComponent} from '../../employees/employee-list/employee-list.component';
-import {EmployeeService} from '../../employees/employeeService';
+import {EmployeeService} from '../../Services/employeeService';
 
 
 @Component({

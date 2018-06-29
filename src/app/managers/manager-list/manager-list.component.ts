@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ManagerService} from '../manager.service';
+import {ManagerService} from '../../Services/manager.service';
 import {Managers} from '../../Entities/Managers';
 
 @Component({

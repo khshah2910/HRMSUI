@@ -1,42 +1,92 @@
 <div class="container">
-  <div class="col-lg-3">
+  <div class="col-lg-5 jumbotron">
+    <h2>Add Employee</h2>
     <div [hidden]="submitted">
-    <form (ngSubmit) = "onSubmit()">
-      <label >First Name</label><input type="text" id="firstName" class="form-control"
-                                       name="firstName" required
-                                       [(ngModel)]="employee.firstName">
-     <!-- <div *ngIf="f.submitted && ! firstName.valid" class="help-block">First Name </div>-->
-      <label >Last Name</label><input type="text" id="lastName" class="form-control"
-                                      name="lastName" required
-                                      [(ngModel)]="employee.lastName">
-     <!-- <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name Required</div>-->
+    <form (ngSubmit) = "onSubmit()" #frm="ngForm" class="form-group">
+
+      <label >First Name</label><input type="text"
+                                       id="firstName"
+                                       class="form-control"
+                                       name="firstName"
+                                       required
+                                       [(ngModel)]="employee.firstName"
+                                       #fname="ngModel">
+      <div *ngIf="fname?.touched">
+        <div *ngIf="fname.errors?.required" class="alert alert-danger">
+          First Name Required
+        </div>
+      </div>
+      <label >Last Name</label><input type="text"
+                                      id="lastName"
+                                      class="form-control"
+                                      name="lastName"
+                                      required
+                                      [(ngModel)]="employee.lastName"
+                                      #lname="ngModel">
+      <div *ngIf="lname?.touched">
+        <div *ngIf="lname.errors?.required" class="alert alert-danger">
+          Last Name Required
+        </div>
+      </div>
       <label >Email</label><input type="email" id="email" class="form-control" pattern="[^ @]*@[^ @]*"
-                                  name="email" required
-                                  [(ngModel)]="employee.email">
-     <!-- <div *ngIf="f.submitted && ! email.valid" class="help-block">Email Required </div>-->
+                                  name="email"
+                                  required
+                                  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                  [(ngModel)]="employee.email"
+                                  #enterdEmail="ngModel">
+      <div *ngIf="enterdEmail?.touched">
+        <div *ngIf="enterdEmail.errors?.required" class="alert alert-danger">
+          Email Required
+        </div>
+        <div *ngIf="enterdEmail.errors?.pattern" class="alert alert-danger">
+          Enter Valid Email
+        </div>
+      </div>
 
       <label >Password</label><input type="password" id="password" class="form-control"
-                                     name="password" required
-                                     [(ngModel)]="employee.password">
-      <!--<div *ngIf="f.submitted && ! password.valid" class="help-block">Password Required </div>-->
+                                     name="password"
+                                     required
+                                     [(ngModel)]="employee.password"
+                                     #pass="ngModel">
+      <div *ngIf="pass?.touched">
+        <div *ngIf="pass.errors?.required" class="alert alert-danger">
+          Password Required
+        </div>
+      </div>
       <label >Username</label><input type="text" id="userName" class="form-control"
-                                     name="userName" required
-                                     [(ngModel)]="employee.userName">
-      <!--<div *ngIf="f.submitted && ! userName.valid" class="help-block">Last Required </div>-->
-      <!--<label >Role</label><input type="text" id="role" class="form-control"
+                                     name="userName"
+                                     required
+                                     [(ngModel)]="employee.userName"
+                                     #uname="ngModel">
+      <div *ngIf="uname?.touched">
+        <div *ngIf="uname.errors?.required" class="alert alert-danger">
+          Username Required
+        </div>
+      </div>
+      <label >Role</label><input type="text" id="role" class="form-control"
                                    name="role"
-                                   [(ngModel)]="employee.role">-->
+                                   [(ngModel)]="employee.role">
 
-      <label >Role</label> <br><select id="role" class="form-control"
-                                       name="role"
-                                       [(ngModel)]="employee.role">
+      <label >Team</label> <br><select id="team" class="form-control"
+                                       name="team"
+                                       required
+                                       [(ngModel)]="employee.team"
+    #assignedTeam="ngModel"
+    >
                                       <option *ngFor="let team of teams"
-                                              [value]="team.id">
-                                        ({{team.id}}){{team.teamName}}
+                                              id="id"
+                                              [ngValue]=team>
+                                        {{team.teamName}}
                                       </option>
                                 </select>
+      <div *ngIf="assignedTeam?.touched">
+        <div *ngIf="assignedTeam.errors?.required" class="alert alert-danger">
+          Please select Team
+        </div>
+      </div>
       <hr>
-      <button type="submit" class="btn btn-success">Save</button>
+      <!--{{frm.value | json}}-->
+      <button type="submit" class="btn btn-success" [disabled]="frm.invalid" >Save Employee!</button>
     </form>
     </div>
       <!--<div [hidden]="!submitted">

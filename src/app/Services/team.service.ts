@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
-import {Employee} from '../Entities/Employee';
 import {Teams} from '../Entities/Teams';
 
 @Injectable()
